@@ -12,9 +12,9 @@ elsif working_dir.file?
 end
 %>
 
-if ! which $HOME/code-insiders; then
+if ! which $HOME/code; then
     pushd $HOME
-    curl -Lk 'https://code.visualstudio.com/sha/download?build=insider&os=cli-alpine-x64' --output  vscode_cli.tar.gz
+    curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output  vscode_cli.tar.gz
     tar -xf vscode_cli.tar.gz
     popd
 fi
@@ -32,7 +32,7 @@ echo ""
 unset $(compgen -e SLURM_)
 unset $(compgen -e PBS_)
 
-$HOME/code-insiders serve-web \
+$HOME/code serve-web \
     --accept-server-license-terms \
     --without-connection-token \
     --host 0.0.0.0 \
