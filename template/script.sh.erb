@@ -34,7 +34,7 @@ unset $(compgen -e PBS_)
 
 $HOME/code serve-web \
     --accept-server-license-terms \
-    --without-connection-token \
+    --connection-token ${password} \
     --host 0.0.0.0 \
     --port $port \
     --log debug \
