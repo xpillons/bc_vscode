@@ -3,10 +3,10 @@
 
   # Generate form id, based on host and port
   form_id = Digest::SHA1.hexdigest("--" + host.to_s + "--" + port.to_s + "--")
-
+  base_url  = "/rnode/#{host}/#{port}/?tkn=#{password}"
 %>
 
-<form id="<%= form_id %>" action="/rnode/<%= host %>/<%= port %>/?tkn=<%= password %>" method="get" target="_blank">
+<form id="<%= form_id %>" action="<%= base_url %>" method="get" target="_blank">
   <button class="btn btn-primary" type="submit">
     <i class="fa fa-cogs"></i> Connect to VS Code
   </button>
