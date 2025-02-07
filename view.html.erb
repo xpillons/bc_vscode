@@ -3,11 +3,24 @@
 
   # Generate form id, based on host and port
   form_id = Digest::SHA1.hexdigest("--" + host.to_s + "--" + port.to_s + "--")
-  base_url  = "/rnode/#{host}/#{port}/?tkn=#{password}"
+  base_url  = "/rnode/#{host}/#{port}/"
+
 %>
+
+<script type="text/javascript">
+(function () {
+  let date = new Date()
+  date.setTime(date.getTime() + (7*24*60*60*1000))
+  let expires = "expires=" + date.toUTCString()
+  let cookiePath = "path=/rnode/" + "<%= host.to_s %>" + "/" + "<%= port.to_s %>/";
+  let cookie = `vscode-tkn=<%= password %>;${expires};${cookiePath};secure`;
+  document.cookie = cookie;
+})();
+</script>
 
 <form id="<%= form_id %>" action="<%= base_url %>" method="get" target="_blank">
   <button class="btn btn-primary" type="submit">
+    <input type="hidden" name="tkn" value="<%= password %>">
     <i class="fa fa-cogs"></i> Connect to VS Code
   </button>
 </form>
